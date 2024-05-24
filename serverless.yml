@@ -1,0 +1,55 @@
+service: yz-serverless
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  region: ap-southeast-1
+  environment:
+    HUBSPOT_PRIVATE_APP_TOKEN: ${env:HUBSPOT_PRIVATE_APP_TOKEN}
+  memorySize: 1024
+  timeout: 30
+
+functions:
+  hello:
+    handler: handler.hello
+    timeout: 30
+    events:
+      - http:
+          path: hello
+          method: get
+          cors:
+            origin: '*'  # Enable CORS for all origins
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+            allowCredentials: false
+
+  addContact:
+    handler: handler.addContact
+    timeout: 30
+    events:
+      - http:
+          path: contact
+          method: post
+          cors:
+            origin: '*'  # Enable CORS for all origins
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+            allowCredentials: false
+
+plugins:
+  - serverless-offline
+  - serverless-dotenv-plugin
+
+package:
+  exclude:
+    - node_modules/aws-sdk/**
+    - .git/**
+    - .vscode/**

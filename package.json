@@ -1,0 +1,18 @@
+{
+  "name": "yz-serverless",
+  "version": "1.0.0",
+  "description": "A Serverless service to interact with HubSpot API",
+  "main": "handler.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@hubspot/api-client": "^8.1.0"
+  },
+  "devDependencies": {
+    "serverless-dotenv-plugin": "^6.0.0",
+    "serverless-offline": "^13.5.1"
+  },
+  "author": "",
+  "license": "ISC"
+}
